@@ -15,12 +15,12 @@ For example, a `Notification` and an `EmailNotification` have an inheritance rel
 
 ### Response 1
 
-1. Your response...
-2. Your response...
-3. Your response...
-4. Your response...
-5. Your response...
-6. Your response...
+1. A `House` class and a `Room` class have a composition relationship because a house can hold multiple rooms.
+2. A `Bicycle` class and a `Vehicle` class have an inheritance relationship because a Bicycle is a type of vehicle.
+3. A `School` class and a `Teacher` class have a composition relationship because a school can have many teachers.
+4. A `Penguin` class and a `Bird` class have an inheritance relationship because a penguin is a bird.
+5. An `Order` class and an `OrderItem` class have a composition relationship because an order could have more than one Item.
+6. A `CheckingAccount` class and a `BankAccount` class have an inheritance relationship because a checking account is still a bank account.
 
 ---
 
@@ -34,9 +34,9 @@ b) In the `Library` class from Problem 2, the `books` and `checkedOut` arrays ar
 
 ### Response 2
 
-a) Your response...
+a) The purpose of making a private property is so that it can’t be **modified** or shown directly, to prevent **unwanted** results. 
 
-b) Your response...
+b) Both `books` and `checkedOut` are **private** because they contain data on which books are checked in and checked out of the `library`. If they weren’t there, you could remove a book **outside** of the object and possibly mess up the internal array. 
 
 ---
 
@@ -80,12 +80,41 @@ c) Explain why the `withdraw` method in the original code has a logic flaw, and 
 
 ### Response 3
 
-a) Your response...
+a) Both `balance` and `transactions` need to be private because anyone can **affect** the amount of money you have and your transaction history.
 
 b) Your rewritten class...
 
 ```js
-// Write your fixed BankAccount class here
+class BankAccount {
+  #balance;
+  #transactions = [];
+  constructor(ownerName, initialBalance) {
+    this.ownerName = ownerName;
+    this.#balance = initialBalance;
+  }
+
+get balance() {
+  return this.#balance;
+}
+
+get transactions() {
+  return this.#transactions;
+}
+
+  deposit(amount) {
+    this.#balance += amount;
+    this.#transactions.push({ type: 'deposit', amount });
+  }
+
+  withdraw(amount) {
+    if (amount > this.#balance) {
+      return "Low funds"
+    }
+    this.#balance -= amount;
+    this.#transactions.push({ type: 'withdrawal', amount });
+  }
+}
 ```
 
-c) Your response...
+c) Withdraw() doesn’t check if the amount your taken out is more than your balance, making your balance go into the negative.
+
