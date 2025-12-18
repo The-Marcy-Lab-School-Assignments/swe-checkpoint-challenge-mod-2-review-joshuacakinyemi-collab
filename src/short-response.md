@@ -116,5 +116,5 @@ get transactions() {
 }
 ```
 
-c) Withdraw() doesn’t check if the amount your taken out is more than your balance, making your balance go into the negative.
+c) `Withdraw()` doesn’t **check** if the amount your taken out is more than your `balance`, making your balance go into the **negative**.
 
